@@ -2,10 +2,13 @@
 # Dockerfile for afraid-autologin
 #
 
-FROM python:3.7-alpine
+FROM python:3.9-alpine
 
 RUN set -ex \
     && apk --update add --no-cache \
+       gcc \
+       musl-dev \
+       libffi-dev \
        chromium \
        chromium-chromedriver \
     && rm -rf /tmp/* /var/cache/apk/*
