@@ -16,7 +16,8 @@ RUN set -ex \
 WORKDIR /app
 COPY app .
 
-RUN pip install --no-cache-dir -r requirements.txt \
+RUN set -ex \
+  && pip install --no-cache-dir -r requirements.txt \
   && mkdir log \
   && ln -s /app/log /log
 

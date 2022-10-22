@@ -14,9 +14,9 @@ services:
       - USERNAME=you_username
       - PASSWORD=you_password
     volumes:
-      - /path/to/log:/log
+      - ./log:/log
 ```
 **Run the following command:**
 ```
-docker-compose run --rm app
+docker compose run --rm app
 ```
