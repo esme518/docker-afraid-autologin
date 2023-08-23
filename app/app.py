@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 import argparse
 import os
 import sys
@@ -63,14 +65,16 @@ def main(logger):
         display.start()
 
     logger.debug("init browser")
-    chrome_options = webdriver.ChromeOptions()
+    chrome_options = Options()
+    chrome_options.binary_location = "/usr/bin/chromium-browser"
     chrome_options.add_argument("window-size=1280,720")
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    browser = webdriver.Chrome(options=chrome_options)
+    chrome_service = Service(executable_path="/usr/bin/chromedriver")
+    browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
     browser.get(URL)
     time.sleep(random.randint(1, 3))
